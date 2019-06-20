@@ -1,6 +1,10 @@
 import config from '@/config'
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
 
+export const errorLogUrl = {
+  errorLogUrl: '/api-seller/log/errorLog'
+}
+
 export const goodsUrl = {
     //
     addUrl: '/api/product/goods/add',

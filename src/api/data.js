@@ -1,4 +1,5 @@
 import axios from '@/libs/api.request'
+import {errorLogUrl} from '@/api/apiUrl.js'
 
 export const getTableData = () => {
   return axios.request({
@@ -23,7 +24,7 @@ export const errorReq = () => {
 
 export const saveErrorLogger = info => {
   return axios.request({
-    url: '/api/anon/errorLog',
+    url: errorLogUrl.errorLogUrl,
     data: info,
     method: 'post'
   })

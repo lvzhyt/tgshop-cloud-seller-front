@@ -1,6 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import { getToken } from '@/libs/util'
+import {errorLogUrl} from '@/api/apiUrl.js'
 // import qs from 'qs'
 
 // import { Spin } from 'iview'
@@ -9,7 +10,7 @@ const addErrorLog = errorInfo => {
   let info = {
     type: 'ajax',
     code: status,
-    mes: statusText,
+    message: statusText,
     url: responseURL
   }
   if (!responseURL.includes('save_error_logger')) store.dispatch('addErrorLog', info)
@@ -67,7 +68,9 @@ class HttpRequest {
           request: { responseURL: config.url }
         }
       }
-      addErrorLog(errorInfo)
+      if(url!==errorLogUrl.errorLogUrl){
+        addErrorLog(errorInfo)
+      }
       return Promise.reject(error)
     })
   }

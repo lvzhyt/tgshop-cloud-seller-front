@@ -1,4 +1,5 @@
 import axios from '@/libs/api.request'
+import {userUrl} from '@/api/userUrl'
 
 export const login = ({ userName, password }) => {
   const data = {
@@ -6,7 +7,7 @@ export const login = ({ userName, password }) => {
     password
   }
   return axios.request({
-    url: '/api/anon/seller/login',
+    url: userUrl.loginUrl,
     data,
     method: 'post'
   })
@@ -14,14 +15,17 @@ export const login = ({ userName, password }) => {
 
 export const getUserInfo = (token) => {
   return axios.request({
-    url: '/api/seller/userInfo',
+    url: userUrl.userInfoUrl,
+    params: {
+      token
+    },
     method: 'get'
   })
 }
 
 export const logout = (token) => {
   return axios.request({
-    url: '/api/anon/seller/logout',
+    url: userUrl.logoutUrl,
     params: {
       token
     },
@@ -31,7 +35,7 @@ export const logout = (token) => {
 
 export const getUnreadCount = () => {
   return axios.request({
-    url: '/api/seller/message/count',
+    url: userUrl.messageCountUrl,
     method: 'get'
   })
 }
