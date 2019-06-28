@@ -202,7 +202,7 @@
               .then(res => {
                 let resData = res.data
                 if(res.data.result===1){
-                  let goodsId = resData.data
+                  let goodsId = resData.data.goodsId
                   this.$router.push({
                     name: 'goods_spec',
                     params: {goodsId:goodsId}

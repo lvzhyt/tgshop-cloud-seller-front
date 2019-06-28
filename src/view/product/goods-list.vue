@@ -73,6 +73,9 @@
       return {
         batchEditEnable: false,
         searchFormItem: {
+          condition:{
+            goodsSn: ''
+          },
           pageNum: 1,
           pageSize: 10
         },

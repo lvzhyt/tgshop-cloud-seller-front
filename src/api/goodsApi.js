@@ -1,4 +1,4 @@
-import {goodsUrl} from './apiUrl'
+import {goodsUrl} from './goodsUrl'
 import axios from '@/libs/api.request'
 
 export const validGoodsSnApi = (goodsSn) => {
@@ -51,10 +51,10 @@ export const getGoodsSkuListApi = (goodsId) => {
   })
 }
 
-// 保存商品
+/** 保存商品 **/
 export const saveGoodsApi = (data) => {
   return axios.request({
-    url: goodsUrl.addUrl,
+    url: goodsUrl.addGoodsUrl,
     data,
     method:'post'
   })

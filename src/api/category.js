@@ -1,9 +1,9 @@
-import {brandUrl, categoryUrl} from './apiUrl'
+import {categoriesUrl,brandUrl} from './categoriesUrl'
 import axios from '@/libs/api.request'
 
 export const searchBrandApi = (brandName) => {
   return axios.request({
-    url: brandUrl.search,
+    url: brandUrl.searchBrandUrl,
     params: {
       brandName
     },
@@ -13,7 +13,7 @@ export const searchBrandApi = (brandName) => {
 
 export const searchCategoriesApi = (parentId) => {
   return axios.request({
-    url: categoryUrl.search,
+    url: categoriesUrl.findListByParentIdUrl,
     params: {
       parentId
     },

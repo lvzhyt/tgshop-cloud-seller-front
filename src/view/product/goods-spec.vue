@@ -77,8 +77,8 @@
         <div class="top5">
           <!-- 商品规格 -->
           <div v-if="goods.specOpen===1">
-            <Card title="规格">
-              <Input icon="md-add" :disabled="goods.goodsId===''" v-model="goodsAddSpecAttrInputVal" placeholder="增加商品规格" @on-enter="handleAddGoodsSpecAttr" @on-click="handleAddGoodsSpecAttr" style="width:300px" />
+            <Card title="颜色">
+              <Input icon="md-add" :disabled="goods.goodsId===''" v-model="goodsAddSpecAttrInputVal" placeholder="增加商品颜色规格" @on-enter="handleAddGoodsSpecAttr" @on-click="handleAddGoodsSpecAttr" style="width:300px" />
               <Table border editable :columns="columnsSpec" :data="goodsColorSpecAttrData" class="top5"></Table>
             </Card>
           </div>
@@ -406,7 +406,7 @@
         }
       },
       resetGoodsData(data){
-        this.goods=data.goods
+        this.goods=data
         this.resetColumnsSkuList()
         this.refreshGoodsAttr()
         this.refreshSkuList()
