@@ -1,4 +1,4 @@
-import { goodsUrl, skuUrl } from './apiUrl'
+import { skuUrl } from './skuUrl'
 import axios from '@/libs/api.request'
 
 export const addSkuApi = (data) => {

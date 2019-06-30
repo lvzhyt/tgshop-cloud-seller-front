@@ -85,7 +85,7 @@
           <!-- 商品尺码 -->
           <div v-if="goods.specSizeOpen===1">
             <Card title="尺码">
-              <Input icon="md-add" v-model="goodsAddSizeAttrInputVal" placeholder="增加商品尺码" @on-enter="handleAddGoodsSizeAttr" @on-click="handleAddGoodsSpecAttr" style="width:300px" />
+              <Input icon="md-add" v-model="goodsAddSizeAttrInputVal" placeholder="增加商品尺码" @on-enter="handleAddGoodsSizeAttr" @on-click="handleAddGoodsSizeAttr" style="width:300px" />
               <Table border :columns="columnsSize" :data="goodsSizeSpecAttrData" class="top5"></Table>
             </Card>
           </div>
@@ -440,6 +440,7 @@
       // 添加商品规格
       handleAddGoodsSpecAttr(){
         console.log('handleAddGoodsSpecAttr', this.goodsAddSpecAttrInputVal)
+        debugger
         if(!this.goodsAddSpecAttrInputVal){
           return false
         }
