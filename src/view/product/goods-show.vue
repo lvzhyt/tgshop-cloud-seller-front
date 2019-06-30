@@ -74,7 +74,7 @@
     </div>
     <div class="top5">
       <div v-if="goods.goodsStatus===1">
-        <div v-if="goodsShowDisabled">{{goodsShowValidMessage}}</div>
+        <div v-if="goodsShowDisabled" class="error-msg">{{goodsShowValidMessage}}</div>
         <Button type="primary" :disabled="goodsShowDisabled" @click="handleSubmitGoodsClick">提交审核</Button>
       </div>
       <div v-if="goods.goodsStatus===4||goods.goodsStatus===6">
@@ -211,12 +211,14 @@
             res = res.data
             if(res.result===1){
               this.resetGoodsData(res.data)
+            }else {
+              this.$Message.error(res.message)
             }
           })
         }
       },
       resetGoodsData(data){
-        this.goods=data.goods
+        this.goods=data
         this.resetColumnsSkuList()
         this.refreshGoodsShowDisabled()
         this.refreshSkuPriceList()
@@ -448,5 +450,9 @@
 </script>
 
 <style scoped>
-
+  .error-msg{
+    color: #d96754;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 </style>

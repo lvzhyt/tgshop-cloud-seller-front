@@ -373,13 +373,17 @@
           })
       },
       handlePageChange(pageNum){
-        this.pager.pageNum = pageNum
-        this.findGoodsPageList()
+        if(pageSize && this.pager.pageNum!==pageNum){
+          this.pager.pageNum = pageNum
+          this.findGoodsPageList()
+        }
       },
       handlePageSizeChange(pageSize){
-        this.pager.pageNum = 1
-        this.pager.pageSize = pageSize
-        this.findGoodsPageList()
+        if(pageSize && this.pager.pageSize !== pageSize){
+          this.pager.pageNum = 1
+          this.pager.pageSize = pageSize
+          this.findGoodsPageList()
+        }
       },
       findGoodsPageList(){
         this.searchFormItem.pageNum = this.pager.pageNum

@@ -8,26 +8,21 @@ export const skuUrl = {
   // 更新商品编号 skuNo
   updateSkuNoUrl: '/api/product/sku/skuNo/update',
   // 更新sku图片
-  updateGoodsSkuPicUrl: '/api/product/sku/skuPic/update',
+  updateGoodsSkuPicUrl: '/api-product/sku/updateGoodsSkuPic',
   // 更新sku信息
   updateGoodsSkuInfoUrl: '/api/product/sku/skuInfo/update',
   // 更新sku库存
-  updateSkuInventoryUrl: '/api/product/sku/updateInventory',
+  updateSkuInventoryUrl: '/api-product/sku/updateGoodsSkuInventory',
   // 更新sku价格
-  updateSkuPriceUrl: '/api/product/sku/updatePrice',
+  updateSkuPriceUrl: '/api-product/sku/updateGoodsSkuPrice',
   // 获取sku列表
-  getSkuListUrl: '/api/product/sku/listByGoodsId',
+  getSkuListUrl: '/api-product/sku/listSkuByGoodsId',
   // 获取sku库存列表
-  getSkuInventoryListByGoodsIdUrl: '/api/product/sku/inventoryListByGoodsId',
+  getSkuInventoryListByGoodsIdUrl: '/api-product/sku/getSkuInventoryListByGoodsId',
   // 获取sku库存列表
-  getSkuPriceListByGoodsIdUrl: '/api/product/sku/priceListByGoodsId',
+  getSkuPriceListByGoodsIdUrl: '/api-product/sku/listSkuPriceByGoodsId',
   // 获取sku详细列表
-  getSkuDetailListByGoodsIdUrl: '/api/product/sku/skuDetailList',
-  // 更新sku图片
-  updateSkuPicture: '/api/product/sku/picture/update',
-  // 更新SKU价格
-  updateSkuPrice: '/api/product/sku/price/update',
-  // 更新sku库存
-  updateSkuInventory: '/api/product/sku/inventory/update',
+  getSkuDetailListByGoodsIdUrl: '/api-product/sku/getSkuDetailListByGoodsId',
+
   nothing:''
 }

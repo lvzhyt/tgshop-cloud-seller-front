@@ -153,6 +153,14 @@
     },
     data (){
       return {
+        emptyGoods: {
+          goodsId:'',
+          goodsName:'',
+          goodsSn:'',
+          goodsStatus:0,
+          specOpen:1,
+          specSizeOpen:0
+        },
         goods: {
           goodsId:'',
           goodsName:'',
@@ -401,6 +409,8 @@
             if(res.result===1){
               let data = res.data
               this.resetGoodsData(data)
+            }else {
+              this.$Message.error(res.message)
             }
           })
         }
@@ -440,7 +450,6 @@
       // 添加商品规格
       handleAddGoodsSpecAttr(){
         console.log('handleAddGoodsSpecAttr', this.goodsAddSpecAttrInputVal)
-        debugger
         if(!this.goodsAddSpecAttrInputVal){
           return false
         }

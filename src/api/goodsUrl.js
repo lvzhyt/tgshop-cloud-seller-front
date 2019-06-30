@@ -1,12 +1,15 @@
+import config from '@/config'
+const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
 export const goodsUrl = {
   //
   addGoodsUrl: '/api-product/goods/addGoods',
   // 校验货号唯一
   validGoodsSnUrl: '/api/product/goods/validGoodsSn',
   // 校验满足上架要求
-  validateGoodsShowUrl: '/api/product/goods/validateGoodsShow',
+  validateGoodsShowUrl: '/api-product/goods/validateGoodsShow',
   // 获取商品 规格值列表 颜色 尺码 规格
-  getGoodsById: '/api/product/getGoodsById',
+  getGoodsById: '/api-product/goods/getGoodsById',
+  // 通过货号查询商品
   getGoodsBySn: '/api-product/goods/getGoodsBySn',
   // 获取商品属性
   getGoodsAttrsUrl: '/api-product/goods/getGoodsAttrs',
@@ -25,18 +28,16 @@ export const goodsUrl = {
   getSkuListBySpecId: '/api/product/goods/getSkuListBySpecId',
   // 删除商品规格
   deleteGoodsSpecAttr:'/api/product/goods/specAttr/del',
-  // 更新商品
-  updateGoodsStatusUrl: '/api/product/goods/updateGoodsStatus',
+  // 更新商品状态
+  updateGoodsStatusUrl: '/api-product/goods/updateGoodsStatus',
   // 批量更新商品 上架 下架
-  batchUpdateGoodsStatusUrl: '/api/product/goods/batchUpdateGoodsStatus',
+  batchUpdateGoodsStatusUrl: '/api-product/goods/batchUpdateGoodsStatus',
   // 批量删除商品
-  batchDeleteGoodsUrl: '/api/product/goods/batchDeleteGoods',
+  batchDeleteGoodsUrl: '/api-product/goods/batchDeleteGoods',
   // 商品上架审核
-  applyForGoodsShowUrl: '/api/product/goods/applyForGoodsShow',
+  applyForGoodsShowUrl: '/api-product/goods/applyForGoodsShow',
   //  查找商品  查找商品分页列表
   findGoodsPageListUrl: '/api-product/goods/findSellerGoodsPageList',
-  //  获取商品sku详情列表
-  getGoodsSkuDetailListByGoodsIdUrl: '/api/product/sku/skuDetailList',
   // 上传商品图片
-  uploadGoodsUrl: '/api-upload/upload/seller/productPicture'
+  uploadGoodsUrl: baseUrl+'/api-product/goods/uploadProductPicture'
 }

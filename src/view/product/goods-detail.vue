@@ -250,7 +250,7 @@
 </template>
 
 <script>
-  import {goodsUrl} from '@/api/apiUrl'
+  import {goodsUrl} from '@/api/goodsUrl'
   import {getGoodsByIdApi, getGoodsBySnApi} from '@/api/goodsApi.js'
   import {updateGoodsSkuPicApi} from '@/api/skuApi.js'
   import Tables from '_c/tables'
@@ -266,7 +266,16 @@
     },
     data () {
       return {
-        uploadGoodsUrl:goodsUrl.uploadGoodsUrl,
+        uploadGoodsUrl: goodsUrl.uploadGoodsUrl,
+        // uploadGoodsUrl: 'http://localhost:9001/api-product/goods/uploadProductPicture',
+        emptyGoods: {
+          goodsId:'',
+          goodsName:'',
+          goodsSn:'',
+          goodsStatus:0,
+          specOpen:1,
+          specSizeOpen:0
+        },
         goods: {
           goodsId:'',
           goodsName:'',
@@ -430,12 +439,14 @@
             res = res.data
             if(res.result===1){
               this.resetGoodsData(res.data)
+            }else {
+              this.$Message.error(res.message)
             }
           })
         }
       },
       resetGoodsData(data){
-        this.goods=data.goods
+        this.goods=data
         this.picUploadData.goodsId=this.goods.goodsId
         this.resetColumnsSkuList()
         this.refreshSkuList()
@@ -697,7 +708,6 @@
       handleSkuTabDbClick(data, index){
         console.log('handleSkuTabDbClick', data, index)
         console.log(this.$refs.skuListTable)
-        debugger
       },
       // ####
       handleView (item) {

@@ -112,6 +112,14 @@
     components: { },
     data () {
       return {
+        emptyGoods: {
+          goodsId:'',
+          goodsName:'',
+          goodsSn:'',
+          goodsStatus:0,
+          specOpen:1,
+          specSizeOpen:0
+        },
         goods: {
           goodsId:'',
           goodsName:'',
@@ -202,6 +210,8 @@
             res = res.data
             if(res.result===1){
               this.resetGoodsData(res.data)
+            }else {
+              this.$Message.error(res.message)
             }
           })
         }
@@ -217,7 +227,7 @@
         }
       },
       resetGoodsData(data){
-        this.goods=data.goods
+        this.goods=data
         this.resetColumnsSkuList()
         this.refreshSkuPriceList()
       },

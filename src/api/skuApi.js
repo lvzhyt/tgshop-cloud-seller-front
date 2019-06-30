@@ -104,3 +104,13 @@ export const getSkuDetailListByGoodsIdApi = (goodsId) => {
     method:'get'
   })
 }
+// 获取商品sku列表
+export const getGoodsSkuDetailListByGoodsIdApi = (goodsId) => {
+  return axios.request({
+    url: skuUrl.getGoodsSkuDetailListByGoodsIdUrl,
+    params:{
+      goodsId
+    },
+    method:'get'
+  })
+}

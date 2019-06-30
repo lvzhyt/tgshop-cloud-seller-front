@@ -128,16 +128,7 @@ export const findGoodsPageListApi = (data) => {
     method:'post'
   })
 }
-// 获取商品sku列表
-export const getGoodsSkuDetailListByGoodsIdApi = (goodsId) => {
-  return axios.request({
-    url: goodsUrl.getGoodsSkuDetailListByGoodsIdUrl,
-    params:{
-      goodsId
-    },
-    method:'get'
-  })
-}
+
 // 获取商品分页列表 商品分页列表
 export const getGoodsPageListApi = (data) => {
   return axios.request({
