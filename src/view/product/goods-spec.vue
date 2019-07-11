@@ -79,14 +79,34 @@
           <div v-if="goods.specOpen===1">
             <Card title="颜色">
               <Input icon="md-add" :disabled="goods.goodsId===''" v-model="goodsAddSpecAttrInputVal" placeholder="增加商品颜色规格" @on-enter="handleAddGoodsSpecAttr" @on-click="handleAddGoodsSpecAttr" style="width:300px" />
-              <Table border editable :columns="columnsSpec" :data="goodsColorSpecAttrData" class="top5"></Table>
+              <Table ref="tableColor" border editable :columns="columnsSpec" :data="goodsColorSpecAttrData" class="top5">
+                <template slot-scope="{ row, index }" slot="action">
+                  <Poptip
+                    confirm
+                    title="确定要删除?"
+                    @on-ok="handleDelGoodsAttr(row,index)"
+                    @on-cancel="handleCancelClick">
+                    <Button type="error" size="small" >删除</Button>
+                  </Poptip>
+                </template>
+              </Table>
             </Card>
           </div>
           <!-- 商品尺码 -->
           <div v-if="goods.specSizeOpen===1">
             <Card title="尺码">
               <Input icon="md-add" v-model="goodsAddSizeAttrInputVal" placeholder="增加商品尺码" @on-enter="handleAddGoodsSizeAttr" @on-click="handleAddGoodsSizeAttr" style="width:300px" />
-              <Table border :columns="columnsSize" :data="goodsSizeSpecAttrData" class="top5"></Table>
+              <Table ref="tableSize" border :columns="columnsSize" :data="goodsSizeSpecAttrData" class="top5">
+                <template slot-scope="{ row, index }" slot="action">
+                  <Poptip
+                    confirm
+                    title="确定要删除?"
+                    @on-ok="handleDelGoodsSize(row,index)"
+                    @on-cancel="handleCancelClick">
+                    <Button type="error" size="small" >删除</Button>
+                  </Poptip>
+                </template>
+              </Table>
             </Card>
           </div>
         </div>
@@ -130,7 +150,8 @@
           <!--            </Button>-->
           <tables ref="skuListTable" border editable  :columns="columnsSkuList" v-model="skuListTableData"
                   @on-delete="handleSkuDelete"
-                  @on-save-edit="handleSaveSku"></tables>
+                  @on-save-edit="handleSaveSku">
+          </tables>
         </Card>
       </div>
       <div class="top5">
@@ -184,25 +205,10 @@
             editable: true
           },
           {
-            title: 'Action',
-            key: 'action',
+            title: '操作',
+            slot: 'action',
             width: 150,
-            align: 'center',
-            render: (h, params) => {
-              return h('div', [
-                h('Button', {
-                  props: {
-                    type: 'error',
-                    size: 'small'
-                  },
-                  on: {
-                    click: () => {
-                      this.handleDelGoodsAttr(params.index)
-                    }
-                  }
-                }, 'Delete')
-              ]);
-            }
+            align: 'center'
           }
         ],
         columnsSize:[
@@ -216,25 +222,10 @@
             key: 'attrValueName'
           },
           {
-            title: 'Action',
-            key: 'action',
+            title: '操作',
+            slot: 'action',
             width: 150,
-            align: 'center',
-            render: (h, params) => {
-              return h('div', [
-                h('Button', {
-                  props: {
-                    type: 'error',
-                    size: 'small'
-                  },
-                  on: {
-                    click: () => {
-                      this.handleDelGoodsSize(params.index)
-                    }
-                  }
-                }, 'Delete')
-              ]);
-            }
+            align: 'center'
           }
         ],
 
@@ -355,7 +346,7 @@
                       this.handleDelGoodsSize(params.index)
                     }
                   }
-                }, 'Delete')
+                }, '删除')
               ]);
             }
           }
@@ -514,11 +505,15 @@
             }
           })
       },
+      handleCancelClick(){
+        console.log('handleCancelClick')
+      },
       handleDelGoodsAttr(params, index){
         console.log('handleDelGoodsAttr', params, index)
       },
-      handleDelGoodsSize(params, index){
-        console.log('handleDelGoodsSize', params, index)
+      handleDelGoodsSize(row, index){
+        debugger
+        console.log('handleDelGoodsSize', row, index)
       },
       handleSaveSkuList(params, index){
         console.log('handleSaveSkuList', params, index)
