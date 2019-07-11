@@ -7,13 +7,13 @@
           <i-switch v-model="batchEditEnable" @on-change="handleBatchEditEnableChange" ></i-switch>
         </p>
         <div>
-          <Form ref="searchForm" :label-width="60" inline>
+          <Form ref="searchForm" :label-width="60" inline  :model="searchFormItem">
             <FormItem label="货号">
-              <Input type="text" placeholder="货号"/>
+              <Input type="text" placeholder="货号" v-model="searchFormItem.goodsSn"/>
             </FormItem>
 <!--            <FormItem label=""></FormItem>-->
             <FormItem>
-              <Button type="primary" shape="circle" icon="ios-search">搜索</Button>
+              <Button type="primary" shape="circle" icon="ios-search" @click="handleSearchSubmit">搜索</Button>
             </FormItem>
           </Form>
         </div>
@@ -73,11 +73,7 @@
       return {
         batchEditEnable: false,
         searchFormItem: {
-          condition:{
-            goodsSn: ''
-          },
-          pageNum: 1,
-          pageSize: 10
+          goodsSn: ''
         },
         pager: {
           pageNum: 1,
@@ -219,6 +215,9 @@
       }
     },
     methods:{
+      handleSearchSubmit(){
+        this.findGoodsPageList()
+      },
       handleBatchEditEnableChange(status){
         console.log('handleBatchEditEnableChange',status)
       },
@@ -386,9 +385,12 @@
         }
       },
       findGoodsPageList(){
-        this.searchFormItem.pageNum = this.pager.pageNum
-        this.searchFormItem.pageSize = this.pager.pageSize
-        findGoodsPageListApi(this.searchFormItem)
+        let data = {
+            condition: this.searchFormItem,
+            pageNum: this.pager.pageNum,
+            pageSize: this.pager.pageSize
+        }
+        findGoodsPageListApi(data)
           .then(response => {
             let res = response.data
             if(res.result){
