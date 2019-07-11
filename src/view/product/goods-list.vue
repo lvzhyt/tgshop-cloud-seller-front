@@ -18,7 +18,7 @@
           </Form>
         </div>
         <div v-if="!batchEditEnable" class="inline-buttons">
-          <Button >新建</Button>
+          <Button @click="handleCreateGoodsClick()">新建</Button>
           <Button :disabled="!currentRow" @click="handleRouterClick('goods_spec')">规格</Button>
           <Button :disabled="!currentRow" @click="handleRouterClick('goods_detail')">详情</Button>
           <Button :disabled="!currentRow" @click="handleRouterClick('goods_price')">价格</Button>
@@ -261,6 +261,11 @@
       },
       handleGoodsCurrentChange(currentRow,oldCurrentRow){
         this.currentRow = currentRow
+      },
+      handleCreateGoodsClick(){
+        this.$router.push({
+          name: 'goods_add'
+        })
       },
       handleRouterClick(routerName){
         if(this.currentRow){
