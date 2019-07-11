@@ -3,7 +3,7 @@ export const skuUrl = {
   // 二级属性 更新sku
   updateSizeSkuListUrl: '/api-product/goods/updateSizeSkuList',
   // 更新sku 状态
-  updateSkuStatusUrl: '/api/product/sku/skuStatus/update',
+  updateSkuStatusUrl: '/api-product/sku/updateSkuStatus',
   updateSku: '/api/product/sku/update',
   // 更新商品编号 skuNo
   updateSkuNoUrl: '/api/product/sku/skuNo/update',

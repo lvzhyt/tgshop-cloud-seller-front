@@ -699,9 +699,9 @@
             res = res.data
             if(res.result===1){
               this.skuListTableData = res.data
-              this.$Message.success(res.successMessage)
+              this.$Message.success(res.message)
             }else{
-              this.$Message.error(res.errorMessage)
+              this.$Message.error(res.message)
             }
           })
       },
@@ -732,9 +732,9 @@
             res = res.data
             if(res.result===1){
               skuRow.skuStatus = skuStatus
-              this.$Message.success(res.successMessage)
+              this.$Message.success(res.message)
             }else {
-              this.$Message.error(res.errorMessage)
+              this.$Message.error(res.message)
             }
           })
       },
