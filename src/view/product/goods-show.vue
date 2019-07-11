@@ -423,7 +423,7 @@
           .then(resp => {
             let res = resp.data
             if(res.result){
-              this.goods = res.data.goods
+              this.goods = res.data
               this.$Message.success(res.successMessage)
             }else {
               this.$Message.error(res.errorMessage)
