@@ -83,6 +83,7 @@
                 <template slot-scope="{ row, index }" slot="action">
                   <Poptip
                     confirm
+                    placement="top-end"
                     title="确定要删除?"
                     @on-ok="handleDelGoodsAttr(row,index)"
                     @on-cancel="handleCancelClick">
@@ -100,8 +101,9 @@
                 <template slot-scope="{ row, index }" slot="action">
                   <Poptip
                     confirm
+                    placement="top-end"
                     title="确定要删除?"
-                    @on-ok="handleDelGoodsSize(row,index)"
+                    @on-ok="handleDelGoodsAttr(row,index)"
                     @on-cancel="handleCancelClick">
                     <Button type="error" size="small" >删除</Button>
                   </Poptip>
@@ -161,7 +163,7 @@
 </template>
 
 <script>
-  import {getGoodsByIdApi, getGoodsBySnApi, addGoodsSpecAttrApi} from '@/api/goodsApi.js'
+  import {getGoodsByIdApi, getGoodsBySnApi, addGoodsSpecAttrApi,deleteGoodsSpecAttrApi} from '@/api/goodsApi.js'
   import {updateSizeSkuListApi, updateSkuStatusApi, updateSkuNoApi, getSkuListByGoodsIdApi} from '@/api/skuApi.js'
   import Tables from '_c/tables'
   import './goods.less'
@@ -207,8 +209,7 @@
           {
             title: '操作',
             slot: 'action',
-            width: 150,
-            align: 'center'
+            width: 80
           }
         ],
         columnsSize:[
@@ -224,8 +225,7 @@
           {
             title: '操作',
             slot: 'action',
-            width: 150,
-            align: 'center'
+            width: 80
           }
         ],
 
@@ -508,12 +508,19 @@
       handleCancelClick(){
         console.log('handleCancelClick')
       },
-      handleDelGoodsAttr(params, index){
-        console.log('handleDelGoodsAttr', params, index)
-      },
-      handleDelGoodsSize(row, index){
-        debugger
-        console.log('handleDelGoodsSize', row, index)
+      handleDelGoodsAttr(row, index){
+        let data = {
+          goodsId: this.goods.goodsId,
+          tbId: row.tbId
+        }
+        deleteGoodsSpecAttrApi(data)
+          .then(res => {
+            if(res.data.result){
+              this.loadGoods(this.goods.goodsId)
+            }else {
+              this.$Message.error(res.data.message)
+            }
+          })
       },
       handleSaveSkuList(params, index){
         console.log('handleSaveSkuList', params, index)

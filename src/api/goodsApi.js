@@ -87,7 +87,7 @@ export const getSkuListBySpecIdApi = (data) => {
 // 删除商品规格值
 export const deleteGoodsSpecAttrApi = (data) => {
   return axios.request({
-    url: goodsUrl.sortGoodsSpecAttr,
+    url: goodsUrl.deleteGoodsSpecAttrUrl,
     data,
     method:'post'
   })

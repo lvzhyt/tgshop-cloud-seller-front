@@ -4,7 +4,7 @@ export const goodsUrl = {
   //
   addGoodsUrl: '/api-product/goods/addGoods',
   // 校验货号唯一
-  validGoodsSnUrl: '/api/product/goods/validGoodsSn',
+  validGoodsSnUrl: '/api-product/goods/validGoodsSn',
   // 校验满足上架要求
   validateGoodsShowUrl: '/api-product/goods/validateGoodsShow',
   // 获取商品 规格值列表 颜色 尺码 规格
@@ -38,6 +38,8 @@ export const goodsUrl = {
   applyForGoodsShowUrl: '/api-product/goods/applyForGoodsShow',
   //  查找商品  查找商品分页列表
   findGoodsPageListUrl: '/api-product/goods/findSellerGoodsPageList',
+  //  删除商品规格属性
+  deleteGoodsSpecAttrUrl: '/api-product/goods/deleteGoodsSpecAttr',
   // 上传商品图片
   uploadGoodsUrl: baseUrl+'/api-product/goods/uploadProductPicture'
 }
