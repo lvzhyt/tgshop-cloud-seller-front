@@ -17,7 +17,7 @@
           <Icon type="ios-film-outline"></Icon>
           商品信息
         </p>
-        <p slot="extra" >
+        <!--<p slot="extra" >
           <Poptip
             confirm
             placement="top-end"
@@ -28,7 +28,7 @@
             v-if="goods.goodsStatus===5">
             <a >下架</a>
           </Poptip>
-        </p>
+        </p>-->
         <CellGroup>
           <Cell title="GoodsSerial" >
             商品货号：<Input icon="ios-search" v-model="goods.goodsSn" placeholder="搜索商品货号" @on-enter="handleSearchGoods" @on-click="handleSearchGoods"  style="width: 300px"/>
@@ -59,7 +59,8 @@
 
       </Card>
     </div>
-    <div class="top5" v-if="goods.goodsStatus!==5">
+<!--    <div class="top5" v-if="goods.goodsStatus!==5"> 非在售才能编辑 -->
+    <div class="top5">
       <Card>
         <p slot="title">
           <Icon type="ios-film-outline"></Icon>

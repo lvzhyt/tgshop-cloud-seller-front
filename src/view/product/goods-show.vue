@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <Steps :current="4">
+      <Steps :current="5">
         <Step title="新增商品" content="创建SPU的基本信息"></Step>
         <Step title="设置SKU"  content="设置商品的SKU"></Step>
         <Step title="设置详情" content="设置商品图片等信息"></Step>
@@ -25,7 +25,7 @@
             @on-ok="handleStatusChangeClick(1)"
             ok-text="是"
             cancel-text="否"
-            v-if="goodsEditable">
+            v-if="goodsReadonly">
             <a shape="circle">启用编辑</a>
             <Tooltip content='"待发布"商品才可以编辑.' placement="top-end">
               <Icon type="ios-help-circle-outline" size="18" />
@@ -94,7 +94,7 @@
     updateGoodsStatusApi,
     validateGoodsShowApi
   } from '../../api/goodsApi'
-  import { getGoodsEditable, getGoodsStatusName } from './goods-util'
+  import { getGoodsReadonly, getGoodsStatusName } from './goods-util'
 
   export default {
     name: 'goods-show',
@@ -182,8 +182,8 @@
       }
     },
     computed:{
-      goodsEditable() {
-        return getGoodsEditable(this.goods.goodsStatus)
+      goodsReadonly() {
+        return getGoodsReadonly(this.goods.goodsStatus)
       },
       goodsStatusName(){
         return getGoodsStatusName(this.goods.goodsStatus)

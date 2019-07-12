@@ -26,7 +26,7 @@
                 @on-ok="handleStatusChangeClick(1)"
                 ok-text="是"
                 cancel-text="否"
-                v-if="goodsEditable">
+                v-if="goodsReadonly">
                 <a shape="circle">启用编辑</a>
                 <Tooltip content='"待发布"商品才可以编辑.' placement="top-end">
                   <Icon type="ios-help-circle-outline" size="18" />
@@ -168,7 +168,7 @@
   import Tables from '_c/tables'
   import './goods.less'
   import { getGoodsAttrsApi, getGoodsSkuListApi, updateGoodsStatusApi } from '../../api/goodsApi'
-  import { getGoodsEditable, getGoodsStatusName } from './goods-util'
+  import { getGoodsReadonly, getGoodsStatusName } from './goods-util'
   export default {
     name: 'goods-spec',
     components: {
@@ -375,8 +375,8 @@
       }
     },
     computed:{
-      goodsEditable() {
-        return getGoodsEditable(this.goods.goodsStatus)
+      goodsReadonly() {
+        return getGoodsReadonly(this.goods.goodsStatus)
       },
       goodsStatusName(){
         return getGoodsStatusName(this.goods.goodsStatus)

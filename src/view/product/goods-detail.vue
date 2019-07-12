@@ -24,7 +24,7 @@
                 @on-ok="handleStatusChangeClick(1)"
                 ok-text="是"
                 cancel-text="否"
-                v-if="goodsEditable">
+                v-if="goodsReadonly">
                 <a shape="circle">启用编辑</a>
               </Poptip>
               <Poptip
@@ -33,7 +33,7 @@
                 @on-ok="handleStatusChangeClick(6)"
                 ok-text="是"
                 cancel-text="否"
-                v-if="goodsEditable">
+                v-if="goods.goodsStatus===5">
                 <a shape="circle">下架</a>
               </Poptip>
               <Poptip
@@ -98,7 +98,7 @@
                 :default-file-list="defaultList"
                 :on-success="handleSuccess"
                 :format="['jpg','jpeg','png']"
-                :max-size="20480"
+                :max-size="1024"
                 :on-format-error="handleFormatError"
                 :on-exceeded-size="handleMaxSize"
                 :before-upload="handleBeforeUploadFacePic"
@@ -147,7 +147,7 @@
                 :default-file-list="defaultList"
                 :on-success="handleSuccess"
                 :format="['jpg','jpeg','png']"
-                :max-size="20480"
+                :max-size="1024"
                 :on-format-error="handleFormatError"
                 :on-exceeded-size="handleMaxSize"
                 :before-upload="handleBeforeUploadMainPic"
@@ -194,7 +194,7 @@
                 :default-file-list="defaultList"
                 :on-success="handleSuccess"
                 :format="['jpg','jpeg','png']"
-                :max-size="20480"
+                :max-size="1024"
                 :on-format-error="handleFormatError"
                 :on-exceeded-size="handleMaxSize"
                 :before-upload="handleBeforeUploadDetailPic"
@@ -257,7 +257,7 @@
   import { getToken } from '../../libs/util'
   import { getSkuListByGoodsIdApi, updateGoodsSkuInfoApi } from '../../api/skuApi'
   import './goods.less'
-  import { getGoodsEditable, getGoodsStatusName } from './goods-util'
+  import { getGoodsReadonly, getGoodsStatusName } from './goods-util'
   import { getGoodsSkuListApi, updateGoodsStatusApi } from '../../api/goodsApi'
   export default {
     name: 'GoodsDetail',
@@ -410,8 +410,8 @@
       }
     },
     computed:{
-      goodsEditable() {
-        return getGoodsEditable(this.goods.goodsStatus)
+      goodsReadonly() {
+        return getGoodsReadonly(this.goods.goodsStatus)
       },
       goodsStatusName(){
         return getGoodsStatusName(this.goods.goodsStatus)
@@ -744,7 +744,7 @@
       handleMaxSize (file) {
         this.$Notice.warning({
           title: 'Exceeding file size limit',
-          desc: 'File  ' + file.name + ' is too large, no more than 2M.'
+          desc: '图片不能超过1M.'
         });
       },
       handleBeforeUploadFacePic () {

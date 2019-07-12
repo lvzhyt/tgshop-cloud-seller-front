@@ -32,12 +32,12 @@ export const getGoodsStatusName = function (status) {
   }
   return statusName
 }
-// 获取商品开启编辑状态
-export const getGoodsEditable = function (status) {
+// 获取商品只读状态 true 只读 false 可编辑
+export const getGoodsReadonly = function (status) {
   //    商品状态,1: 未发布，2：待审核，3：审核驳回，4：待上架，5：在售，6：已下架，7：锁定， 8： 申请解锁
-  let editable = status === 2 ||
+  let readonly = status === 2 ||
     status === 3 ||
     status === 4 ||
     status === 6
-  return editable;
+  return readonly;
 }
