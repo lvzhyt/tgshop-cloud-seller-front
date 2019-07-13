@@ -234,10 +234,10 @@
           .then(response => {
             let res = response.data
             if(res.result){
-              this.$Message.success(res.successMessage)
+              this.$Message.success(res.data)
               this.findGoodsPageList()
             }else {
-              this.$Message.error(res.errorMessage)
+              this.$Message.error(res.message)
             }
           })
       },
@@ -312,7 +312,6 @@
       },
       getSelectedIds(){
         let ids =[]
-        debugger
         if(this.$refs.batchGoodsTable){
           let selectArr = this.$refs.batchGoodsTable.getSelection()
           for (let i = 0; i < selectArr.length; i++) {
